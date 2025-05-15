@@ -8,6 +8,7 @@ import numpy as np
 from tarware.utils.utils import flatten_list, split_list
 from tarware.warehouse import Agent, AgentType
 
+import time
 
 class MissionType(Enum):
     PICKING = 1
@@ -141,6 +142,9 @@ def heuristic_episode(env, render=False, seed=None):
         global_episode_return += np.sum(reward)
         done = all(done)
         all_infos.append(info)
+        
+        # Makes it a little easier to see the display, but should be removed prior to training
+        time.sleep(0.1)
         timestep += 1
 
     return all_infos, global_episode_return, episode_returns
